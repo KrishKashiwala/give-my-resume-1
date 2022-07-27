@@ -6,7 +6,8 @@ import Crystal from './resume-components/Crystal/Crystal';
 function App() {
   const [name, setName] = React.useState('')
   const ref = React.createRef()
-
+ 
+  
   return (
     <div>
       <div className='d-flex m-10' style={{ margin: "5em 7em" }}>
