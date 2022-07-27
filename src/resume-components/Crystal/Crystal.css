@@ -1,0 +1,54 @@
+.res
+{
+    height: 80%;
+    width: 35%;
+    font-size: 1px;
+    margin: auto;   
+    margin-top: 50px;
+    border: 1px solid black;
+    background: rgb(249, 248, 244);
+}
+.top h3{
+    font-size: 8em;
+    margin-top: -2%;
+}
+h1{
+    font-size: 20em;
+    
+}
+h2{
+    font-size: 15em;
+}
+h3{
+    font-size: 12em;
+}
+h4{
+    font-size: 9em;
+}
+.top{
+    border-bottom: 1px solid black;
+    height: 18%;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.4em;
+    padding-bottom: 2%;
+}
+.bot{
+    display: grid;
+    height: 72%;
+    grid-template-columns: 3fr 2fr;
+    margin: 4%;
+}
+.left{
+    border-right: 1px solid black;
+    padding-right: 10%;
+}
+.right{
+    margin-left: 10%;
+    padding-right: 8%;
+}
+.head{
+    width: 40%;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 2px;
+    
+}
