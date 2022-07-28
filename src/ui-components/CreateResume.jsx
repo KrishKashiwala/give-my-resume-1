@@ -2,7 +2,10 @@ import React from 'react'
 import Standard from '../resume-components/standard/Standard'
 const Homepage = () => {
 	return (
-		<div id="resume_preview">
+		<div style={{
+			width: "50vw",
+			height: "10px"
+		}}>
 			<Standard />
 		</div>
 	)

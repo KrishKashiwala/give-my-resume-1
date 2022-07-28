@@ -1,6 +1,7 @@
 import React from 'react'
 // @ts-ignore
 import './standard.css'
+// @ts-ignore
 import image from './image.png'
 import EducationContext from '../../utils/myContext';
 const Standard = () => {
