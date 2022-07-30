@@ -6,7 +6,10 @@ import EducationContext from '../utils/myContext';
 const PersonalDetails = () => {
 	const baseState = React.useContext(EducationContext);
 	return (
-		<div>
+		<Box sx={{
+			'& .MuiTextField-root': { m: 1, width: '30ch' },
+
+		}} >
 			<Typography variant="h5" component="h2" style={{
 				textAlign: "start",
 				padding: "5px",
@@ -114,7 +117,7 @@ const PersonalDetails = () => {
 				</Box>
 
 			</Box>
-		</div>
+		</Box >
 	)
 }
 

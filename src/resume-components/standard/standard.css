@@ -7,12 +7,12 @@
 	color :	rgb(146, 143, 143)
 }
 .main-container{
-	padding : 10px;
+	font-size: 40%;
 	overflow: hidden;
 	background : var(--back);
+	max-height: max-content;
 }
 #displayWrapper{
-	padding : 10px;
 	background-color: #FBC744;
 	margin-right : -10em;
 	margin-left : 10em;
@@ -26,7 +26,7 @@
 	font-size : 25px;
 }
 .title{
-	font-size: 20px;
+	font-size: 100%;
 }
 .contact > ul > li{
 	list-style: none;
@@ -45,5 +45,6 @@
 	background-color: #FBC744;
 	width: 30vw;
 	height : 4em;
+	margin-left : -50em;
 	border-top-right-radius: 50px;
 }

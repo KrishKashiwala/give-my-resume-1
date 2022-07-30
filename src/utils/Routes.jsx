@@ -1,14 +1,14 @@
 import React from 'react'
-import { BrowserRouter, Route, Router, Switch } from 'react-router-dom'
-import Build from '../ui-components/Build'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Buildhome from '../ui-components/Buildhome'
 import Home from '../ui-components/Home'
 
 const Routes = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route path="/" exact component={Home}></Route>
-				<Route path="/build" exact component={Build}></Route>
+				<Route path="/" exact component={Buildhome}></Route>
+				<Route path="/build" exact component={Home}></Route>
 			</Switch>
 		</BrowserRouter>
 	)

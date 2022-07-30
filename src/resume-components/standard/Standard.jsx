@@ -14,16 +14,16 @@ const Standard = () => {
 			}}>
 				<img src={image} alt="" style={{
 					width: "40%",
+					objectFit: "cover",
 					height: "40%"
 				}} />
 				<div className="info ">
 					<h2 style={{
 						fontSize: "2em",
-
 						// @ts-ignore
 					}}>{baseState.basicDetails.name}</h2>
 					<h4 style={{
-						fontSize: "15px",
+						fontSize: "50%",
 						fontWeight: 200,
 						letterSpacing: "5px",
 						// @ts-ignore
@@ -75,28 +75,46 @@ const Standard = () => {
 							</li>
 						</ul>
 					</div>
-					<div className="languages">
-
-						<h2 className="title">Languages</h2>
-						<ul className='opacity'>
-							<li>
-
-								Hindi
-							</li>
-							<li>
-								Gujarati
-							</li>
-							<li>
-
-								English
-							</li>
-						</ul>
+					<div className="education">
+						<h2 className="title">Education</h2>
 					</div>
+
 					<div className="achievements">
 						<h2 className="title">Achievements</h2>
 						<ul className='opacity'>
 							<li>Ranked top 3 in two semesters</li>
 							<li>Participated in multiple hackathons</li>
+						</ul>
+					</div>
+					<div className="expertise">
+						<h2 className="title">Expertise</h2>
+						<ul className='opacity'>
+							<li>
+
+								Highly Organised
+							</li>
+							<li>
+								Email Marketing
+							</li>
+							<li>
+
+								Copyediting
+							</li>
+							<li>
+
+								Proactive Leaner
+							</li>
+							<li>
+
+								leadership
+							</li>
+							<li>
+								discipline
+							</li>
+							<li>
+
+								Translation
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -119,14 +137,14 @@ const Standard = () => {
 						}}>
 							<div>
 								<h4 style={{
-									fontSize: "20px",
+									fontSize: "120%",
 								}}>SafeTrade.ai 2022-2023</h4>
 								<span className='opacity'>Full Stack Engineer Intern</span>
 								<span className='opacity'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris </span></div>
 
 							<div>
 								<h4 style={{
-									fontSize: "20px",
+									fontSize: "120%",
 								}}>SafeTrade.ai 2022-2023</h4>
 								<span className='opacity'>Full Stack Engineer Intern</span>
 								<span className='opacity'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris </span>	</div>
@@ -137,14 +155,12 @@ const Standard = () => {
 						<h2 className="title">Projects</h2>
 						<div>
 							<h4 style={{
-								fontSize: "20px",
+								fontSize: "120%",
 							}}>SafeTrade.ai 2022-2023</h4>
 							<span className='opacity'>Full Stack Engineer Intern</span>
 							<span className='opacity'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris </span></div>
 					</div>
-					<div className="education">
-						<h2 className="title">Education</h2>
-					</div>
+
 				</div>
 			</div>
 			<div className="footer">

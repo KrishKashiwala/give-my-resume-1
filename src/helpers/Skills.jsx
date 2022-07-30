@@ -13,9 +13,6 @@ const Skills = (props) => {
 
 	return (
 		<Box
-			style={{
-				width: "30vw",
-			}}
 		>
 			<Box style={{
 				display: "flex",

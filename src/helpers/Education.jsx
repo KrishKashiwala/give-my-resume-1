@@ -3,8 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { Box, TextField } from '@mui/material'
-import React, { useContext } from 'react'
-import EducationContext from '../utils/myContext';
+import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
@@ -44,13 +43,12 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 
 
 
-	const baseState = useContext(EducationContext)
 	return (
 		<Box component="div"
 			id="edu"
 
 			sx={{
-				'& .MuiTextField-root': { m: 1, width: '25ch' },
+				'& .MuiTextField-root': { m: 1, width: '30ch' },
 			}}
 			style={{
 				display: 'flex',
@@ -59,7 +57,7 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 		>
 			<Box component="form"
 				sx={{
-					'& .MuiTextField-root': { m: 1, width: '25ch' },
+					'& .MuiTextField-root': { m: 1, width: '30ch' },
 				}}
 				style={{
 					display: 'flex',
@@ -80,7 +78,8 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 					// @ts-ignore
 					onChange={event => handleChangeInput(inputField.id, event)}
 				/>
-				<FormControl fullWidth style={{ marginTop: "7px", minWidth: "300px" }}>
+				<FormControl fullWidth style={{ marginTop: "7px", width: "15vw", maxWidth: "15vw" }}>
+
 					<InputLabel id="demo-simple-select-label">University Name</InputLabel>
 					<Select
 						labelId="demo-simple-select-label"
