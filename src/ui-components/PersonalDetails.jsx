@@ -1,10 +1,10 @@
 import { Typography } from '@material-ui/core'
 import { Box, TextField } from '@mui/material'
 import React from 'react'
-import EducationContext from '../utils/myContext';
+import DataContext from '../utils/myContext';
 
 const PersonalDetails = () => {
-	const baseState = React.useContext(EducationContext);
+	const baseState = React.useContext(DataContext);
 	return (
 		<Box sx={{
 			'& .MuiTextField-root': { m: 1, width: '30ch' },

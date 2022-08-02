@@ -17,12 +17,13 @@ const Formdata = (props) => {
 				return (
 					<EducationTitle inputFields={props.inputFields} setInputFields={props.setInputFields} />
 				)
-			case 3: return (<ExperienceTitle expDetails={props.experienceDetails} setExpDetails={props.setExperienceDetails} />)
+			// @ts-ignore
+			case 3: return (<ExperienceTitle expDetails={props.experience} setExpDetails={props.setExperience} />)
 			case 4: return (
 				<>
 					<Skills hardSkills={props.hardSkills} setHardSkills={props.setHardSkills} setSoftSkills={props.setSoftSkills} softSkills={props.softSkills} />
 					<hr />
-					<Achievements />
+					<Achievements achievements={props.achievements} setAchievements={props.setAchievements} />
 				</>
 			)
 			default: return (<LinksWrapper platform={props.platform} setPlatform={props.setPlatform} />)

@@ -1,19 +1,26 @@
-import { Box, FormControl, InputLabel, Select, TextField } from '@mui/material';
+// @ts-nocheck
+import { Box, TextField } from '@mui/material';
 import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import DatePicker from 'react-date-picker';
+import DataContext from '../utils/myContext';
 
 const Experience = (props) => {
+	const baseState = React.useContext(DataContext)
 	const [startDate, setStartDate] = React.useState(new Date('2022-07-30T21:11:54'))
 	const [endDate, setEndDate] = React.useState(new Date('2022-07-30T21:11:54'))
-
 
 	const handleChangeInput = (id, event) => {
 		const newInputFields = props.expDetails.map(i => {
 			if (id === i.id) {
+				console.log("i : ", i[event.target])
 				i[event.target.name] = event.target.value
 			}
 			return i;
+		})
+		console.log("field : ", newInputFields)
+		newInputFields.map(item => {
+			baseState.addToExperience(item)
 		})
 		props.setExpDetails(newInputFields);
 	}
@@ -21,8 +28,8 @@ const Experience = (props) => {
 		const values = [...props.expDetails];
 		values.splice(values.findIndex(value => value.id === id), 1);
 		props.setExpDetails(values);
-		console.log(props.expDetails)
 	}
+	console.log(baseState.experience)
 	return (
 
 		<Box component="div"
@@ -95,8 +102,8 @@ const Experience = (props) => {
 				}}
 			>
 				from
-				<DatePicker value={startDate} name="startDate" onChange={(e) => handleChangeInput(props.expDetail.id, e)} /> to
-				<DatePicker value={endDate} name="endDate" onChange={(e) => handleChangeInput(props.expDetail.id, e)} />
+				<input type="date" value={props.expDetail.startDate} name="startDate" onChange={(e) => handleChangeInput(props.expDetail.id, e)} /> to
+				<input type="date" value={props.expDetail.endDate} name="endDate" onChange={(e) => handleChangeInput(props.expDetail.id, e)} />
 
 			</Box>
 

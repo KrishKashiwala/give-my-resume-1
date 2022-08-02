@@ -1,10 +1,13 @@
+// @ts-nocheck
 import { Box } from '@mui/material'
 import React from 'react'
 import ChipInput from 'material-ui-chip-input'
 import { Typography } from '@mui/material'
 import { handleAddChip, handleDeleteChip } from './Skills'
-const Achievements = () => {
-	const [achievements, setAchievements] = React.useState([])
+import DataContext from '../utils/myContext'
+const Achievements = (props) => {
+	const baseState = React.useContext(DataContext)
+	console.log(baseState.achievements)
 	return (
 		<Box
 			style={{
@@ -30,9 +33,12 @@ const Achievements = () => {
 					style={{
 						width: "100%",
 					}}
-					value={achievements}
-					onAdd={(chip) => handleAddChip(chip, achievements, setAchievements)}
-					onDelete={(chip, index) => handleDeleteChip(chip, index, achievements, setAchievements)}
+					value={props.achievements}
+					onAdd={(chip) => {
+						handleAddChip(chip, props.achievements, props.setAchievements)
+						baseState.addSkills(chip, "ach")
+					}}
+				// onDelete={(chip, index) => handleDeleteChip(chip, index, achievements, setAchievements)}
 				/>
 			</Box>
 		</Box >

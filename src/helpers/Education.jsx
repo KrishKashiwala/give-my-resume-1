@@ -1,17 +1,19 @@
+// @ts-nocheck
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { Box, TextField } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
+import DataContext from '../utils/myContext';
 
 
 const Education = ({ props, inputField, setInputFields, inputFields }) => {
 	const URL = 'http://universities.hipolabs.com/search?name=&country=india'
 	const [universityNamesList, setUniversityNamesList] = React.useState([])
 
-
+	const baseState = useContext(DataContext)
 	const firstFetch = async () => {
 		await fetch(URL).then(res => res.json()).then(data => {
 			setUniversityNamesList(data)
@@ -19,14 +21,15 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 
 	}
 
-
 	const handleChangeInput = (id, event) => {
 		const newInputFields = inputFields.map(i => {
 			if (id === i.id) {
 				i[event.target.name] = event.target.value
 			}
-			console.log(i)
 			return i;
+		})
+		newInputFields.map(item => {
+			baseState.addtoEducation(item)
 		})
 		setInputFields(newInputFields);
 	}
@@ -41,6 +44,7 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 		firstFetch()
 	}, [])
 
+	console.log(baseState.education)
 
 
 	return (

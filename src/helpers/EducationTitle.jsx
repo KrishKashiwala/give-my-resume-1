@@ -4,11 +4,11 @@ import Button from '@mui/material/Button'
 import Education from '../helpers/Education';
 import Add from '@mui/icons-material/Add'
 import { Typography } from '@material-ui/core';
-import EducationContext from '../utils/myContext';
 import { v4 as uuidv4 } from 'uuid';
+import DataContext from '../utils/myContext';
 
 const EducationTitle = (props) => {
-	const baseState = React.useContext(EducationContext)
+	const baseState = React.useContext(DataContext)
 	const [cnt, setCnt] = React.useState(1)
 	const handleSaveChanges = () => {
 		console.log(props.inputFields)
@@ -18,7 +18,6 @@ const EducationTitle = (props) => {
 
 
 	const handleAddFields = () => {
-		console.log(props.inputFields)
 		props.setInputFields(inputFields => [...inputFields, { id: uuidv4(), name: '', cgpa: '' }])
 	}
 

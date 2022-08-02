@@ -2,16 +2,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import Education from './helpers/Education';
-import { EducationProvider } from './utils/myContext';
+import { DataProvider } from './utils/myContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <EducationProvider>
+    <DataProvider>
       <App />
-    </EducationProvider>
+    </DataProvider>
   </React.StrictMode>
 );
 

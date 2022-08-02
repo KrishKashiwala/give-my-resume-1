@@ -1,12 +1,16 @@
+// @ts-nocheck
 import { Box } from '@mui/material'
 import React from 'react'
 import CreateResume from './CreateResume'
 import Formdata from './Formdata'
 import Sections from './Sections'
 import { v4 as uuidv4 } from 'uuid';
+import { useContext } from 'react'
+import DataContext from '../utils/myContext'
 
 const Build = () => {
-
+  const baseState = useContext(DataContext)
+  const [achievements, setAchievements] = React.useState([])
   const [step, setStep] = React.useState(1)
   const [platform, setPlatform] = React.useState([
     {
@@ -22,7 +26,7 @@ const Build = () => {
   const [inputFields, setInputFields] = React.useState([
     { id: uuidv4(), name: '', cgpa: '' }
   ]);
-  const [experienceDetails, setExperienceDetails] = React.useState([{
+  const [experience, setExperience] = React.useState([{
     id: uuidv4(),
     company: '',
     title: "",
@@ -32,6 +36,7 @@ const Build = () => {
   }])
   const [hardSkills, setHardSkills] = React.useState([])
   const [softSkills, setSoftSkills] = React.useState([])
+
 
 
   return (
@@ -65,8 +70,9 @@ const Build = () => {
         gap: "2em"
       }}>
         <Sections step={step} setStep={setStep} />
-        <Formdata step={step} setStep={setStep} inputFields={inputFields} setInputFields={setInputFields} education={educationDetails} setEducationDetails={setEducationDetails} experienceDetails={experienceDetails} setExperienceDetails={setExperienceDetails} hardSkills={hardSkills} setHardSkills={setHardSkills} softSkills={softSkills} setSoftSkills={setSoftSkills} platform={platform} setPlatform={setPlatform} />
+        <Formdata step={step} setStep={setStep} achievements={achievements} setAchievements={setAchievements} inputFields={inputFields} setInputFields={setInputFields} education={educationDetails} setEducationDetails={setEducationDetails} experience={experience} setExperience={setExperience} hardSkills={hardSkills} setHardSkills={setHardSkills} softSkills={softSkills} setSoftSkills={setSoftSkills} platform={platform} setPlatform={setPlatform} />
         <CreateResume />
+
       </Box>
 
     </Box>

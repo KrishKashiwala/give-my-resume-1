@@ -1,11 +1,12 @@
+// @ts-nocheck
 import React from 'react'
 // @ts-ignore
 import './standard.css'
 // @ts-ignore
 import image from './image.png'
-import EducationContext from '../../utils/myContext';
+import DataContext from '../../utils/myContext';
 const Standard = () => {
-	const baseState = React.useContext(EducationContext);
+	const baseState = React.useContext(DataContext);
 	return (
 		<div className="main-container">
 			<div id="displayWrapper" style={{
@@ -23,9 +24,9 @@ const Standard = () => {
 						// @ts-ignore
 					}}>{baseState.basicDetails.name}</h2>
 					<h4 style={{
-						fontSize: "50%",
+						fontSize: "100%",
 						fontWeight: 200,
-						letterSpacing: "5px",
+						letterSpacing: "3px",
 						// @ts-ignore
 					}}>{baseState.basicDetails.profile}</h4>
 				</div>
@@ -39,8 +40,8 @@ const Standard = () => {
 							Contact
 						</h2>
 						<ul className='opacity'>
-							<li>8160351412</li>
-							<li>krishkashiwala@gmail.com</li>
+							<li>{baseState.basicDetails.phone}</li>
+							<li>{baseState.basicDetails.email}</li>
 							<li>Website</li>
 						</ul>
 					</div>

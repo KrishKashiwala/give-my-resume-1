@@ -1,16 +1,20 @@
+// @ts-nocheck
 import React from 'react'
 import ChipInput from 'material-ui-chip-input'
 import { Box } from '@mui/system'
 import { Typography } from '@mui/material'
+import DataContext from '../utils/myContext'
 export const handleAddChip = (chip, values, setter) => {
-	// @ts-ignore
 	setter([...values, chip])
 }
 export const handleDeleteChip = (chip, index, values, setter) => {
 	setter(values.filter((c, i) => i !== index))
 }
-const Skills = (props) => {
 
+const Skills = (props) => {
+	const baseState = React.useContext(DataContext)
+	console.log(baseState.softSkills)
+	console.log(baseState.hardSkills)
 	return (
 		<Box
 		>
@@ -37,8 +41,14 @@ const Skills = (props) => {
 						marginBottom: "1em"
 					}}
 					value={props.hardSkills}
-					onAdd={(chip) => handleAddChip(chip, props.hardSkills, props.setHardSkills)}
-					onDelete={(chip, index) => handleDeleteChip(chip, index, props.hardSkills, props.setHardSkills)}
+					onAdd={(chip) => {
+						handleAddChip(chip, props.hardSkills, props.setHardSkills)
+						baseState.addSkills(chip, "hard")
+					}}
+					onDelete={(chip, index) => {
+						handleDeleteChip(chip, index, props.hardSkills, props.setHardSkills)
+						baseState.removeSkills(index, "hard")
+					}}
 				/>
 				<label htmlFor="">Soft skills</label>
 				{/* @ts-ignore */}
@@ -47,8 +57,14 @@ const Skills = (props) => {
 						width: "100%",
 					}}
 					value={props.softSkills}
-					onAdd={(chip) => handleAddChip(chip, props.softSkills, props.setSoftSkills)}
-					onDelete={(chip, index) => handleDeleteChip(chip, index, props.softSkills, props.setSoftSkills)}
+					onAdd={(chip) => {
+						handleAddChip(chip, props.softSkills, props.setSoftSkills)
+						baseState.addSkills(chip, "soft")
+					}}
+					onDelete={(chip, index) => {
+						handleDeleteChip(chip, index, props.softSkills, props.setSoftSkills)
+						baseState.removeSkills(index, "soft")
+					}}
 				/>
 			</Box>
 		</Box >

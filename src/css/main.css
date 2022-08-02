@@ -1,3 +1,17 @@
 .main{
-	background: linear-gradient(180deg, #FD6981 30%, #EDF0F5 30%);
+	background: linear-gradient(180deg, #FD6981 27%, #EDF0F5 27%);
+}
+html, body {
+    height:100%;
+}
+.standard{
+	width: 1200px;
+    min-height: 100px;
+    height: auto;
+    margin: 80px auto 0px auto;
+    background-color: black;
+    padding: 10px 10px;
+    display:table;
+    overflow:hidden;
+    height:100%;
 }
