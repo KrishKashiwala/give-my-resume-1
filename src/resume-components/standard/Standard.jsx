@@ -5,6 +5,9 @@ import './standard.css'
 // @ts-ignore
 import image from './image.png'
 import DataContext from '../../utils/myContext';
+import { AiFillLinkedin, AiOutlineMail } from 'react-icons/ai'
+import { BsGlobe } from 'react-icons/bs'
+import { BiPhone } from 'react-icons/bi'
 const Standard = () => {
 	const baseState = React.useContext(DataContext);
 	return (
@@ -32,91 +35,96 @@ const Standard = () => {
 				</div>
 			</div>
 			<div id="content" style={{
-				padding: "25px"
+				padding: "1em"
 			}}>
 				<div className="leftContainer">
 					<div className="contact">
 						<h2 className="title">
 							Contact
 						</h2>
-						<ul className='opacity'>
-							<li>{baseState.basicDetails.phone}</li>
-							<li>{baseState.basicDetails.email}</li>
-							<li>Website</li>
-						</ul>
+						<div className='opacity'>
+							{
+								baseState.basicDetails.phone ? (
+									<div style={{
+										display: "flex",
+										alignItems: "center",
+										gap: "1em"
+									}}>
+										<BiPhone />
+										<div>{baseState.basicDetails.phone}</div>
+									</div>
+								) : null
+							}
+							{
+								baseState.basicDetails.email ? (
+									<div>
+										<AiOutlineMail />
+										<a className="link" href={`mailto:${baseState.basicDetails.email}`} target="_blank" rel="noopener noreferrer">Email</a>
+									</div>
+								) : null
+							}
+							{
+								baseState.website ? (
+									<div>
+										<BsGlobe />
+										<a className='link' target="blank" href={baseState.website}>Website</a></div>
+								) : null
+							}
+							{
+								baseState.linkedin ? (
+									<div>
+										<AiFillLinkedin />
+										<a className='link' target="blank" href={baseState.linkedin}>Linkedin</a></div>
+								) : null
+							}
+						</div>
 					</div>
-					<div className="expertise">
-						<h2 className="title">Expertise</h2>
-						<ul className='opacity'>
-							<li>
 
-								Highly Organised
-							</li>
-							<li>
-								Email Marketing
-							</li>
-							<li>
-
-								Copyediting
-							</li>
-							<li>
-
-								Proactive Leaner
-							</li>
-							<li>
-
-								leadership
-							</li>
-							<li>
-								discipline
-							</li>
-							<li>
-
-								Translation
-							</li>
-						</ul>
-					</div>
 					<div className="education">
 						<h2 className="title">Education</h2>
 					</div>
 
+					<div className="expertise" style={{
+						marginBottom: "10px"
+					}}
+					>
+						<h2 className="title">Expertise</h2>
+						<div style={{
+							display: "flex",
+							flexWrap: "wrap",
+							width: "10vw",
+							gap: "5px",
+
+						}}>
+							{baseState.hardSkills.map(item => {
+								return (
+
+									<div style={{
+										background: "#ffffff",
+										padding: "5px",
+										borderRadius: "25px",
+									}}>
+										{item}
+									</div>
+								)
+							})
+
+							}
+						</div>
+					</div>
 					<div className="achievements">
 						<h2 className="title">Achievements</h2>
-						<ul className='opacity'>
-							<li>Ranked top 3 in two semesters</li>
-							<li>Participated in multiple hackathons</li>
-						</ul>
-					</div>
-					<div className="expertise">
-						<h2 className="title">Expertise</h2>
-						<ul className='opacity'>
-							<li>
-
-								Highly Organised
-							</li>
-							<li>
-								Email Marketing
-							</li>
-							<li>
-
-								Copyediting
-							</li>
-							<li>
-
-								Proactive Leaner
-							</li>
-							<li>
-
-								leadership
-							</li>
-							<li>
-								discipline
-							</li>
-							<li>
-
-								Translation
-							</li>
-						</ul>
+						<div className='opacity' style={{
+							padding: "1.5em"
+						}}>
+							{
+								baseState.achievements.map(item => {
+									return (
+										<li>{item}</li>
+									)
+								})
+							}
+						</div>
 					</div>
 				</div>
 				<div className="rightContainer" style={{
@@ -167,7 +175,7 @@ const Standard = () => {
 			<div className="footer">
 
 			</div>
-		</div>
+		</div >
 	)
 }
 

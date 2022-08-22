@@ -44,8 +44,6 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 		firstFetch()
 	}, [])
 
-	console.log(baseState.education)
-
 
 	return (
 		<Box component="div"
@@ -82,8 +80,7 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 					// @ts-ignore
 					onChange={event => handleChangeInput(inputField.id, event)}
 				/>
-				<FormControl fullWidth style={{ marginTop: "7px", width: "15vw", maxWidth: "15vw" }}>
-
+				<FormControl fullWidth style={{ marginTop: "7px", minWidth: "300px" }}>
 					<InputLabel id="demo-simple-select-label">University Name</InputLabel>
 					<Select
 						labelId="demo-simple-select-label"

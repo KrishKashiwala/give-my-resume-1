@@ -11,10 +11,9 @@ export const handleDeleteChip = (chip, index, values, setter) => {
 	setter(values.filter((c, i) => i !== index))
 }
 
+
 const Skills = (props) => {
 	const baseState = React.useContext(DataContext)
-	console.log(baseState.softSkills)
-	console.log(baseState.hardSkills)
 	return (
 		<Box
 		>

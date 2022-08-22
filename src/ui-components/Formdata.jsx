@@ -6,6 +6,7 @@ import ExperienceTitle from '../helpers/ExperienceTitle';
 import Skills from '../helpers/Skills';
 import Achievements from '../helpers/Achievements';
 import LinksWrapper from '../helpers/LinksWrapper';
+import Project from '../helpers/Project';
 const Formdata = (props) => {
 
 	const PageDisplay = () => {
@@ -19,14 +20,15 @@ const Formdata = (props) => {
 				)
 			// @ts-ignore
 			case 3: return (<ExperienceTitle expDetails={props.experience} setExpDetails={props.setExperience} />)
-			case 4: return (
+			case 4: return (<Project />)
+			case 5: return (<LinksWrapper website={props.website} setWebsite={props.setWebsite} linkedin={props.linkedin} setLinkedin={props.setLinkedin} />)
+			default: return (
 				<>
 					<Skills hardSkills={props.hardSkills} setHardSkills={props.setHardSkills} setSoftSkills={props.setSoftSkills} softSkills={props.softSkills} />
 					<hr />
 					<Achievements achievements={props.achievements} setAchievements={props.setAchievements} />
 				</>
 			)
-			default: return (<LinksWrapper platform={props.platform} setPlatform={props.setPlatform} />)
 		}
 	}
 

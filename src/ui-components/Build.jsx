@@ -12,13 +12,8 @@ const Build = () => {
   const baseState = useContext(DataContext)
   const [achievements, setAchievements] = React.useState([])
   const [step, setStep] = React.useState(1)
-  const [platform, setPlatform] = React.useState([
-    {
-      id: uuidv4(),
-      name: "",
-      link: ""
-    }
-  ])
+  const [website, setWebsite] = React.useState('')
+  const [linkedin, setLinkedin] = React.useState('')
   const [educationDetails, setEducationDetails] = React.useState({
     name: '',
     cgpa: ''
@@ -70,7 +65,7 @@ const Build = () => {
         gap: "2em"
       }}>
         <Sections step={step} setStep={setStep} />
-        <Formdata step={step} setStep={setStep} achievements={achievements} setAchievements={setAchievements} inputFields={inputFields} setInputFields={setInputFields} education={educationDetails} setEducationDetails={setEducationDetails} experience={experience} setExperience={setExperience} hardSkills={hardSkills} setHardSkills={setHardSkills} softSkills={softSkills} setSoftSkills={setSoftSkills} platform={platform} setPlatform={setPlatform} />
+        <Formdata step={step} setStep={setStep} achievements={achievements} setAchievements={setAchievements} inputFields={inputFields} setInputFields={setInputFields} education={educationDetails} setEducationDetails={setEducationDetails} experience={experience} setExperience={setExperience} hardSkills={hardSkills} setHardSkills={setHardSkills} softSkills={softSkills} setSoftSkills={setSoftSkills} website={website} setWebsite={setWebsite} linkedin={linkedin} setLinkedin={setLinkedin} />
         <CreateResume />
 
       </Box>

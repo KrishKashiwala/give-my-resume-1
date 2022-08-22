@@ -21,42 +21,14 @@ export function DataProvider({ children }) {
 	const [hardSkills, setHardSkills] = React.useState([])
 	const [softSkills, setSoftSkills] = React.useState([])
 	const [sectionId, setSectionId] = React.useState(0);
-	const [platform, setPlatform] = React.useState([
-		{
-			id: "",
-			name: "",
-			link: ""
+	const [website, setWebsite] = React.useState('')
+	const [linkedin, setLinkedin] = React.useState('')
+
+	const addPlatform = (platform, val) => {
+		switch (platform) {
+			case 'website': setWebsite(val); return
+			case 'linkedin': setLinkedin(val); return
 		}
-	])
-
-
-
-	//add platform
-	const addPlatform = (obj) => {
-		let flag = checkAndUpdatePlatform(obj)
-		if (!flag) {
-			const newMap = [...education]
-			newMap.push(obj)
-			setPlatform(newMap)
-		}
-
-	}
-
-
-	//remove platform
-	const removePlatform = (id) => {
-		const arr = platform.filter(item => item.id === id)
-		console.log(arr)
-	}
-
-	const checkAndUpdatePlatform = (obj) => {
-		const index = platform.findIndex(item => item.id === obj.id)
-		if (index > -1) {
-			const newEduMap = [...platform]
-			newEduMap[index] = obj
-			setPlatform(newEduMap)
-			return true;
-		} else return false
 	}
 
 
@@ -144,6 +116,12 @@ export function DataProvider({ children }) {
 			default: return;
 		}
 	}
+
+	//remove achievements
+	const removeAchievements = (index) => {
+		setAchievements(achievements.filter((c, i) => i !== index))
+	}
+
 	//add experience
 	const addToExperience = (obj) => {
 		let flag = checkAndUpdateExperience(obj)
@@ -170,7 +148,7 @@ export function DataProvider({ children }) {
 
 	return (
 		<DataContext.Provider value={{
-			achievements, platform, experience, removePlatform, addPlatform, education, addtoEducation, hardSkills, softSkills, addSkills, removeSkills, basicDetails, addtoBasicDetails, sectionId,
+			achievements, experience, education, addtoEducation, hardSkills, softSkills, addSkills, removeSkills, basicDetails, addtoBasicDetails, sectionId, removeAchievements, addPlatform, website, linkedin,
 			addToExperience, setSectionId
 		}}>{children}</DataContext.Provider>
 	)

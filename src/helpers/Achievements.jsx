@@ -7,7 +7,6 @@ import { handleAddChip, handleDeleteChip } from './Skills'
 import DataContext from '../utils/myContext'
 const Achievements = (props) => {
 	const baseState = React.useContext(DataContext)
-	console.log(baseState.achievements)
 	return (
 		<Box
 			style={{
@@ -30,6 +29,7 @@ const Achievements = (props) => {
 			<Box style={{ padding: "10px" }}>
 				{/* @ts-ignore */}
 				<ChipInput
+					fullWidth
 					style={{
 						width: "100%",
 					}}
@@ -38,7 +38,12 @@ const Achievements = (props) => {
 						handleAddChip(chip, props.achievements, props.setAchievements)
 						baseState.addSkills(chip, "ach")
 					}}
-				// onDelete={(chip, index) => handleDeleteChip(chip, index, achievements, setAchievements)}
+					onDelete={(chip, index) => {
+
+						handleDeleteChip(chip, index, props.achievements, props.setAchievements)
+						baseState.removeAchievements(index)
+					}
+					}
 				/>
 			</Box>
 		</Box >
