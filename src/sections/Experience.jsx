@@ -2,7 +2,6 @@
 import { Box, TextField } from '@mui/material';
 import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
-import DatePicker from 'react-date-picker';
 import DataContext from '../utils/myContext';
 
 const Experience = (props) => {
@@ -36,7 +35,7 @@ const Experience = (props) => {
 			id="edu"
 
 			sx={{
-				'& .MuiTextField-root': { m: 1, width: '25ch' },
+				'& .MuiTextField-root': { m: 1 },
 			}}
 			style={{
 				display: 'flex',

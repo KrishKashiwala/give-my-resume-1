@@ -1,0 +1,9 @@
+.deleteButton{
+	background-color: #D61C4E;
+}
+.deleteButton:hover{
+	transition: all 250ms ease-in-out; 
+	transform: scaleX(1.09) scaleY(1.09);
+	background-color: #ab0531;
+	color : "#ffffff"
+}

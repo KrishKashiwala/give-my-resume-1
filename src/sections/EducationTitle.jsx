@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import React from 'react'
 import Button from '@mui/material/Button'
-import Education from '../helpers/Education';
+import Education from './Education';
 import Add from '@mui/icons-material/Add'
 import { Typography } from '@material-ui/core';
 import { v4 as uuidv4 } from 'uuid';

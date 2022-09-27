@@ -10,6 +10,7 @@ import { BsGlobe } from 'react-icons/bs'
 import { BiPhone } from 'react-icons/bi'
 const Standard = () => {
 	const baseState = React.useContext(DataContext);
+	const skills = [...baseState.hardSkills, baseState.softSkills]
 	return (
 		<div className="main-container">
 			<div id="displayWrapper" style={{
@@ -96,7 +97,7 @@ const Standard = () => {
 							gap: "5px",
 
 						}}>
-							{baseState.hardSkills.map(item => {
+							{skills.map(item => {
 								return (
 
 									<div style={{

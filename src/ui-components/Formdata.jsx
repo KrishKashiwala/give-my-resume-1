@@ -1,12 +1,12 @@
 import React from 'react'
 import Box from '@mui/material/Box'
-import EducationTitle from '../helpers/EducationTitle';
+import EducationTitle from '../sections/EducationTitle';
 import PersonalDetails from './PersonalDetails';
-import ExperienceTitle from '../helpers/ExperienceTitle';
-import Skills from '../helpers/Skills';
-import Achievements from '../helpers/Achievements';
-import LinksWrapper from '../helpers/LinksWrapper';
-import Project from '../helpers/Project';
+import ExperienceTitle from '../sections/ExperienceTitle';
+import Skills from '../sections/Skills';
+import Achievements from '../sections/Achievements';
+import LinksWrapper from '../sections/LinksWrapper';
+import Project from '../sections/Project';
 const Formdata = (props) => {
 
 	const PageDisplay = () => {

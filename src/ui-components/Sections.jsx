@@ -5,6 +5,7 @@ import { GiOpenBook, GiAchievement } from "react-icons/gi";
 import { GrLink } from "react-icons/gr";
 import { BsFillBriefcaseFill } from "react-icons/bs";
 import { GoProject } from 'react-icons/go'
+import SectionLayout from '../helpers/SectionLayout';
 const Sections = (props) => {
 	return (
 		<Box style={{
@@ -23,25 +24,10 @@ const Sections = (props) => {
 				textAlign: "center",
 				gap: "3em"
 			}}>
-				<Box style={{
-
-					maxWidth: "20vw",
-					width: "7vw",
-					padding: "0.5em",
-					borderRadius: "10px",
-					cursor: "pointer",
-					maxHeight: "15vw",
-					height: "6em",
-					background: "#FFFFFF",
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
-					justifyContent: "center",
-				}} onClick={() => props.setStep(1)}>
-
+				<SectionLayout>
 					<HiUser />
 					<p>Personal info</p>
-				</Box>
+				</SectionLayout>
 				<Box style={{
 
 					maxWidth: "20vw",
@@ -148,7 +134,7 @@ const Sections = (props) => {
 
 				</Box>
 			</Box>
-		</Box>
+		</Box >
 
 	)
 }

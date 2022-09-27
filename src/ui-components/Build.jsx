@@ -16,7 +16,8 @@ const Build = () => {
   const [linkedin, setLinkedin] = React.useState('')
   const [educationDetails, setEducationDetails] = React.useState({
     name: '',
-    cgpa: ''
+    cgpa: '',
+    degree: ''
   })
   const [inputFields, setInputFields] = React.useState([
     { id: uuidv4(), name: '', cgpa: '' }
