@@ -1,10 +1,33 @@
 import { Typography } from '@material-ui/core'
 import { Box, TextField } from '@mui/material'
-import React from 'react'
-import DataContext from '../utils/myContext';
+import React, { useCallback, useState } from 'react'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updatePersonalDetails } from '../redux/formSlice';
 
 const PersonalDetails = () => {
-	const baseState = React.useContext(DataContext);
+	// @ts-ignore
+	const reduxStore = useSelector(state => state.formState)
+	const dispatch = useDispatch()
+	const [personalDetails, setPersonalDetails] = useState({
+		name: reduxStore.personalDetails.name,
+		profile: reduxStore.personalDetails.profile,
+		email: reduxStore.personalDetails.email,
+		mobileNo: reduxStore.personalDetails.mobileNo,
+		aboutMe: reduxStore.personalDetails.aboutMe
+	})
+	const handleDispatch = () => {
+		dispatch(updatePersonalDetails(personalDetails))
+	}
+
+	const handleInputChange = (e) => {
+		setPersonalDetails({ ...personalDetails, [e.target.name]: e.target.value })
+	}
+
+	useEffect(() => {
+		handleDispatch()
+	}, [reduxStore.step, personalDetails])
+
 	return (
 		<Box sx={{
 			'& .MuiTextField-root': { m: 1, width: '30ch' },
@@ -20,103 +43,49 @@ const PersonalDetails = () => {
 				Personal Details
 			</Typography>
 			<hr />
-			<Box
 
-				style={{
-					display: 'flex',
-					flexDirection: "column",
-				}}
-			>
-				<Box style={{
-					display: 'flex',
-					flexDirection: "row",
-					alignItems: "center",
-				}}>
-					<TextField
-						id="name"
-						label="Name"
-						fullWidth
-						required
-						style={{
-							marginLeft:
-								'9px',
-							maxWidth: "30em"
-						}}
-						type="text"
-						// @ts-ignore
-						value={baseState.basicDetails.name}
-						autoComplete="current-name"
-						// @ts-ignore
-						onChange={e => baseState.addtoBasicDetails("name", e.target.value)}
-					/>
-					<TextField
-						id="job_profile"
-						label="Job Profile"
-						fullWidth
-						required
-						style={{
-							marginLeft:
-								'9px',
-						}}
-						// @ts-ignore
-						value={baseState.basicDetails.profile}
-						type="text"
-						// @ts-ignore
-						onChange={e => baseState.addtoBasicDetails("profile", e.target.value)}
-						autoComplete="current-job_profile"
-					/>
-				</Box>
-				<Box style={{
-					paddingRight: "10px"
-				}}>
-					<TextField
-						id="email"
-						label="Email"
-						fullWidth
-						style={{
-							marginLeft:
-								'9px',
-							marginTop: "10px",
-						}}
-						// @ts-ignore
-						value={baseState.basicDetails.email}
-						type="text"
-						autoComplete="current-email"
-						required
-						// @ts-ignore
-						onChange={e => baseState.addtoBasicDetails("email", e.target.value)}
-					/>
-				</Box>
+			<div className='input_container'>
+				<label htmlFor="">Name</label>
+				<input type="text" className="input_class"
+					onChange={e => handleInputChange(e)}
+					value={personalDetails.name}
+					name="name"
+				/>
+			</div>
+			<div className='input_container'>
+				<label htmlFor="">Profile</label>
+				<input type="text" className="input_class"
+					onChange={e => handleInputChange(e)}
+					value={personalDetails.profile}
+					name="profile"
+				/>
+			</div>
+			<div className='input_container'>
+				<label htmlFor="">Email</label>
+				<input type="text" className="input_class"
+					onChange={e => handleInputChange(e)}
+					value={personalDetails.email}
+					name="email"
+				/>
+			</div>
 
-				<Box
-					component="form"
-					sx={{
-						'& .MuiTextField-root': { m: 1, width: '30ch' },
-					}}
-					noValidate
-					style={{
-						display: 'flex',
-						flexDirection: "row"
-					}}
-					autoComplete="off"
-				>
+			<div className='input_container'>
+				<label htmlFor="">Mobile no.</label>
+				<input type="number" className="input_class"
+					onChange={e => handleInputChange(e)}
+					value={personalDetails.mobileNo}
+					name="mobileNo"
+				/>
+			</div>
+			<div className='input_container'>
+				<label htmlFor="">About Me</label>
+				<textarea maxLength={200} className="input_class"
+					onChange={e => handleInputChange(e)}
+					value={personalDetails.aboutMe}
+					name="aboutMe"
+				/>
+			</div>
 
-					<TextField
-						id="phone"
-						label="Mobile no."
-						type="number"
-						autoComplete="current-phoneNumber"
-						required
-
-						// @ts-ignore
-						value={baseState.basicDetails.phone}
-						// @ts-ignore
-						onChange={e => baseState.addtoBasicDetails("phone", +(e.target.value))}
-					/>
-
-				</Box>
-
-			</Box>
 		</Box >
 	)
 }

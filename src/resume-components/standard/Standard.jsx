@@ -8,9 +8,11 @@ import DataContext from '../../utils/myContext';
 import { AiFillLinkedin, AiOutlineMail } from 'react-icons/ai'
 import { BsGlobe } from 'react-icons/bs'
 import { BiPhone } from 'react-icons/bi'
+import { useSelector } from 'react-redux';
 const Standard = () => {
 	const baseState = React.useContext(DataContext);
 	const skills = [...baseState.hardSkills, baseState.softSkills]
+	const reduxStore = useSelector(state => state.formState)
 	return (
 		<div className="main-container">
 			<div id="displayWrapper" style={{
@@ -26,13 +28,13 @@ const Standard = () => {
 					<h2 style={{
 						fontSize: "2em",
 						// @ts-ignore
-					}}>{baseState.basicDetails.name}</h2>
+					}}>{reduxStore.personalDetails.name}</h2>
 					<h4 style={{
 						fontSize: "100%",
 						fontWeight: 200,
 						letterSpacing: "3px",
 						// @ts-ignore
-					}}>{baseState.basicDetails.profile}</h4>
+					}}>{reduxStore.personalDetails.profile}</h4>
 				</div>
 			</div>
 			<div id="content" style={{
@@ -45,37 +47,37 @@ const Standard = () => {
 						</h2>
 						<div className='opacity'>
 							{
-								baseState.basicDetails.phone ? (
+								reduxStore.personalDetails.mobileNo ? (
 									<div style={{
 										display: "flex",
 										alignItems: "center",
 										gap: "1em"
 									}}>
 										<BiPhone />
-										<div>{baseState.basicDetails.phone}</div>
+										<div>{reduxStore.personalDetails.mobileNo}</div>
 									</div>
 								) : null
 							}
 							{
-								baseState.basicDetails.email ? (
+								reduxStore.personalDetails.email ? (
 									<div>
 										<AiOutlineMail />
-										<a className="link" href={`mailto:${baseState.basicDetails.email}`} target="_blank" rel="noopener noreferrer">Email</a>
+										<a className="link" href={`mailto:${reduxStore.personalDetails.email}`} target="_blank" rel="noopener noreferrer">Email</a>
 									</div>
 								) : null
 							}
 							{
-								baseState.website ? (
+								reduxStore.links.website ? (
 									<div>
 										<BsGlobe />
-										<a className='link' target="blank" href={baseState.website}>Website</a></div>
+										<a className='link' target="blank" href={reduxStore.links.website}>Website</a></div>
 								) : null
 							}
 							{
-								baseState.linkedin ? (
+								reduxStore.links.linkedin ? (
 									<div>
 										<AiFillLinkedin />
-										<a className='link' target="blank" href={baseState.linkedin}>Linkedin</a></div>
+										<a className='link' target="blank" href={reduxStore.links.linkedin}>Linkedin</a></div>
 								) : null
 							}
 						</div>
@@ -131,10 +133,14 @@ const Standard = () => {
 				<div className="rightContainer" style={{
 					marginLeft: "15px"
 				}}>
-					<div className="aboutMe">
-						<h2 className="title">About Me</h2>
-						<span className='opacity'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
-					</div>
+					{reduxStore.personalDetails.aboutMe ? (
+
+						<div className="aboutMe">
+							<h2 className="title">About Me</h2>
+							<span className='opacity'>{reduxStore.personalDetails.aboutMe}</span>
+						</div>
+					) : null
+					}
 					<div className="experience" style={{
 						marginTop: "20px",
 						marginBottom: "2em"

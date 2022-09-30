@@ -1,50 +1,42 @@
-// @ts-nocheck
-import { Box, TextField } from '@mui/material'
-import React from 'react'
-import { Typography } from '@material-ui/core';
-import DataContext from '../utils/myContext';
+import React, { useEffect, useState } from 'react'
+import { updateSocialLinks } from '../redux/formSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const LinksWrapper = (props) => {
-	const baseState = React.useContext(DataContext)
+
+	// @ts-ignore
+	const reduxStore = useSelector(state => state.formState)
+	const dispatch = useDispatch()
+	const [links, setLinks] = useState({
+		website: reduxStore.links.website,
+		linkedin: reduxStore.links.linkedin
+	})
+	const handleDispatch = () => {
+		dispatch(updateSocialLinks(links))
+	}
+
+	useEffect(() => {
+		handleDispatch()
+	}, [reduxStore.step, links])
+
+
 	return (
-		<Box style={{
-			padding: "10px",
-		}}>
-			<Box style={{
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "space-between",
-				padding: "5px"
-			}}>
-				<Typography variant="h5" component="h2" style={{
-					textAlign: "center",
-				}} >
-					Social Links
-				</Typography>
+		<div>
+			<div className='input_container'>
+				<label htmlFor="">Website</label>
+				<input type="text" className='input_class' onChange={(e) => {
+					setLinks({ ...links, website: e.target.value })
 
-			</Box>
-			<Box style={{
+				}} /></div>
+			<div className='input_container'>
+				<label htmlFor="">Linkedin</label>
+				<input type="text" className='input_class' onChange={(e) => {
+					setLinks({ ...links, linkedin: e.target.value })
 
-				display: "flex",
-				flexDirection: "column",
-				gap: "3em",
-				padding: "10px 10px"
-			}}>
-				<TextField id="website" value={props.website} label="website link" fullWidth variant="standard" onChange={(e) => {
-					props.setWebsite(e.target.value)
-					baseState.addPlatform("website", e.target.value)
+				}} /></div>
 
-				}} />
-				<TextField id="linkedin" value={props.linkedin}
-					label="linkedin link" fullWidth variant="standard" onChange={(e) => {
-						props.setLinkedin(e.target.value)
-						baseState.addPlatform("linkedin", e.target.value)
-					}}
-				/>
-			</Box>
-		</Box>
-
+		</div>
 
 	)
 

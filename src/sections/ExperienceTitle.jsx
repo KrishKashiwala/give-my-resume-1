@@ -4,10 +4,22 @@ import { Box, Button, Typography } from '@mui/material'
 import { v4 as uuidv4 } from 'uuid';
 import Add from '@mui/icons-material/Add'
 import Experience from './Experience'
+import { useDispatch, useSelector } from 'react-redux';
+import { addNewExperience } from '../redux/formSlice';
 const ExperienceTitle = ({ expDetails, setExpDetails }) => {
-	const handleAddFields = () => {
-		setExpDetails(inputFields => [...expDetails,
-		{ company: "", title: "", startDate: "", endDate: "", description: "", id: uuidv4() }])
+	const dispatch = useDispatch()
+	// @ts-ignore
+	const reduxStore = useSelector(state => state.formState)
+	const handleNewExperienceSection = () => {
+		dispatch(addNewExperience({
+			id: uuidv4(),
+			company: '',
+			title: '',
+			description: '',
+			startDate: new Date(),
+			endDate: new Date()
+
+		}))
 	}
 	return (
 		<>
@@ -25,15 +37,15 @@ const ExperienceTitle = ({ expDetails, setExpDetails }) => {
 				</Typography>
 				<Button variant="contained"
 					// @ts-ignore
-					startIcon={<Add />} onClick={handleAddFields}> Add section</Button>
+					startIcon={<Add />} onClick={handleNewExperienceSection}> Add section</Button>
 			</Box>
 
 			{
-				expDetails.map(item => {
+				reduxStore.experience.map(item => {
 					return (
 						<>
 							<hr />
-							<Experience expDetail={item} expDetails={expDetails} setExpDetails={setExpDetails} />
+							<Experience item={item} />
 
 						</>
 

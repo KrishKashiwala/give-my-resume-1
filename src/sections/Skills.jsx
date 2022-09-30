@@ -3,17 +3,26 @@ import React from 'react'
 import ChipInput from 'material-ui-chip-input'
 import { Box } from '@mui/system'
 import { Typography } from '@mui/material'
-import DataContext from '../utils/myContext'
-export const handleAddChip = (chip, values, setter) => {
-	setter([...values, chip])
-}
-export const handleDeleteChip = (chip, index, values, setter) => {
-	setter(values.filter((c, i) => i !== index))
-}
+import { removeSkillDetails, updateSkillDetails } from '../redux/formSlice'
+import { useDispatch, useSelector } from 'react-redux'
+
+
 
 
 const Skills = (props) => {
-	const baseState = React.useContext(DataContext)
+
+	const dispatch = useDispatch()
+	const reduxStore = useSelector(state => state.formState)
+
+
+
+	const handleSkillInputChange = (type, skill) => {
+		dispatch(updateSkillDetails({ type, skill }))
+	}
+	const handleDeleteSkillChange = (type, skill) => {
+		dispatch(removeSkillDetails({ type, skill }))
+	}
+
 	return (
 		<Box
 		>
@@ -39,14 +48,14 @@ const Skills = (props) => {
 						width: "100%",
 						marginBottom: "1em"
 					}}
-					value={props.hardSkills}
+					value={reduxStore.skills.hardSkills}
 					onAdd={(chip) => {
-						handleAddChip(chip, props.hardSkills, props.setHardSkills)
-						baseState.addSkills(chip, "hard")
+
+						handleSkillInputChange("hardSkills", chip)
 					}}
 					onDelete={(chip, index) => {
-						handleDeleteChip(chip, index, props.hardSkills, props.setHardSkills)
-						baseState.removeSkills(index, "hard")
+
+						handleDeleteSkillChange("hardSkills", chip)
 					}}
 				/>
 				<label htmlFor="">Soft skills</label>
@@ -55,14 +64,14 @@ const Skills = (props) => {
 					style={{
 						width: "100%",
 					}}
-					value={props.softSkills}
+					value={reduxStore.skills.softSkills}
 					onAdd={(chip) => {
-						handleAddChip(chip, props.softSkills, props.setSoftSkills)
-						baseState.addSkills(chip, "soft")
+
+						handleSkillInputChange("softSkills", chip)
 					}}
 					onDelete={(chip, index) => {
-						handleDeleteChip(chip, index, props.softSkills, props.setSoftSkills)
-						baseState.removeSkills(index, "soft")
+
+						handleDeleteSkillChange("softSkills", chip)
 					}}
 				/>
 			</Box>

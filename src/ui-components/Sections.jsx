@@ -1,11 +1,11 @@
 import { Box } from '@mui/material';
 import React from 'react'
-import { HiUser } from "react-icons/hi";
-import { GiOpenBook, GiAchievement } from "react-icons/gi";
-import { GrLink } from "react-icons/gr";
-import { BsFillBriefcaseFill } from "react-icons/bs";
-import { GoProject } from 'react-icons/go'
-import SectionLayout from '../helpers/SectionLayout';
+import User from '../images/user.svg'
+import Work from '../images/work.svg'
+import Education from '../images/education.svg'
+import Project from '../images/project.svg'
+import Achievement from '../images/skill.svg'
+import Link from '../images/link.svg'
 const Sections = (props) => {
 	return (
 		<Box style={{
@@ -24,23 +24,41 @@ const Sections = (props) => {
 				textAlign: "center",
 				gap: "3em"
 			}}>
-				<SectionLayout>
-					<HiUser />
-					<p>Personal info</p>
-				</SectionLayout>
 				<Box style={{
 
 					maxWidth: "20vw",
 					width: "7vw",
-					padding: "1em",
+					padding: "0.5em",
 					borderRadius: "10px",
-					maxHeight: "10vw",
 					cursor: "pointer",
+					maxHeight: "15vw",
+					height: "6em",
 					background: "#FFFFFF",
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					justifyContent: "center",
+				}} onClick={() => props.setStep(1)}>
+					<img src={User} alt="user_img" />
+				</Box>
+
+				<Box style={{
+
+					maxWidth: "20vw",
+					width: "7vw",
+					padding: "0.5em",
+					borderRadius: "10px",
+					cursor: "pointer",
+					maxHeight: "15vw",
+					height: "6em",
+					background: "#FFFFFF",
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					justifyContent: "center",
 				}} onClick={() => props.setStep(2)}>
 
-					< GiOpenBook />
-					<p>Education</p>
+					<img src={Education} alt="user_img" />
 				</Box>
 			</Box>
 			<Box style={{
@@ -67,8 +85,7 @@ const Sections = (props) => {
 					justifyContent: "center",
 				}} onClick={() => props.setStep(3)}>
 
-					<BsFillBriefcaseFill />
-					<p>Work Experience</p>
+					<img src={Work} alt="user_img" />
 
 				</Box>
 				<Box style={{
@@ -87,9 +104,7 @@ const Sections = (props) => {
 					justifyContent: "center",
 				}} onClick={() => props.setStep(4)}>
 
-					<GoProject />
-					<p>Projects</p>
-
+					<img src={Project} alt="user_img" />
 				</Box>
 
 			</Box>
@@ -106,31 +121,38 @@ const Sections = (props) => {
 				<Box style={{
 					maxWidth: "20vw",
 					width: "7vw",
+					padding: "0.5em",
 					borderRadius: "10px",
-					maxHeight: "10vw",
-					padding: "1em",
-					textAlign: "center",
 					cursor: "pointer",
+					maxHeight: "15vw",
+					height: "6em",
 					background: "#FFFFFF",
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					justifyContent: "center",
 				}} onClick={() => props.setStep(5)}>
 
-					<GrLink />
-					<p>Links</p>
+					<img src={Link} alt="user_img" />
 
 				</Box>
 				<Box style={{
 
 					maxWidth: "20vw",
 					width: "7vw",
-					cursor: "pointer",
-					padding: "1em",
+					padding: "0.5em",
 					borderRadius: "10px",
-					maxHeight: "10vw",
+					cursor: "pointer",
+					maxHeight: "15vw",
+					height: "6em",
 					background: "#FFFFFF",
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					justifyContent: "center",
 				}} onClick={() => props.setStep(6)}>
 
-					<GiAchievement />
-					<p>Skills</p>
+					<img src={Achievement} alt="user_img" />
 
 				</Box>
 			</Box>

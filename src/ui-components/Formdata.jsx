@@ -7,9 +7,12 @@ import Skills from '../sections/Skills';
 import Achievements from '../sections/Achievements';
 import LinksWrapper from '../sections/LinksWrapper';
 import Project from '../sections/Project';
+import { updateStep } from '../redux/formSlice';
+import { useDispatch } from 'react-redux';
 const Formdata = (props) => {
-
+	const dispatch = useDispatch()
 	const PageDisplay = () => {
+		dispatch(updateStep(props.step))
 		switch (props.step) {
 			case 1: return (
 				<PersonalDetails />
@@ -38,7 +41,7 @@ const Formdata = (props) => {
 				minWidth: "40vw",
 				maxWidth: "40vw",
 				resize: "both",
-				background: "#ffffff",
+				background: "#F2F0FE",
 				borderRadius: "10px"
 			}}
 		>

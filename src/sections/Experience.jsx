@@ -1,127 +1,88 @@
-// @ts-nocheck
-import { Box, TextField } from '@mui/material';
-import React from 'react'
-import DeleteIcon from '@mui/icons-material/Delete';
+
+import "react-datepicker/dist/react-datepicker.css";
 import DataContext from '../utils/myContext';
+import DeleteButton from '../utils/buttons/DeleteButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNewExperience, updateExperienceDetails } from '../redux/formSlice';
+import React, { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
 
-const Experience = (props) => {
-	const baseState = React.useContext(DataContext)
-	const [startDate, setStartDate] = React.useState(new Date('2022-07-30T21:11:54'))
-	const [endDate, setEndDate] = React.useState(new Date('2022-07-30T21:11:54'))
+const Experience = ({ item }) => {
+	// @ts-ignore
+	const reduxStore = useSelector(state => state.formState)
+	const dispatch = useDispatch()
 
-	const handleChangeInput = (id, event) => {
-		const newInputFields = props.expDetails.map(i => {
-			if (id === i.id) {
-				console.log("i : ", i[event.target])
-				i[event.target.name] = event.target.value
-			}
-			return i;
-		})
-		console.log("field : ", newInputFields)
-		newInputFields.map(item => {
-			baseState.addToExperience(item)
-		})
-		props.setExpDetails(newInputFields);
+	const handleDispatch = () => {
+		if (experience.title !== "" && experience.company !== "" && experience.description !== "") {
+
+			dispatch(updateExperienceDetails(experience))
+		}
+
 	}
-	const handleRemoveFields = id => {
-		const values = [...props.expDetails];
-		values.splice(values.findIndex(value => value.id === id), 1);
-		props.setExpDetails(values);
-	}
-	console.log(baseState.experience)
+
+
+	console.log("item: ", item)
+	// continue from here and make the redux store work with other experience fields , education section and think about proects section
+
+	const [experience, setExperience] = useState({
+		id: item.id,
+		company: '',
+		title: "",
+		description: "",
+		startDate: item.startDate,
+		endDate: item.endDate
+	})
+
+	useEffect(() => {
+		handleDispatch()
+	}, [experience])
+
+	console.log("experience: ", reduxStore.experience)
+	// console.log("local experience: ", experience)
+
 	return (
 
-		<Box component="div"
-			id="edu"
-
-			sx={{
-				'& .MuiTextField-root': { m: 1 },
-			}}
-			style={{
-				display: 'flex',
-				flexDirection: "column"
-			}}
-		>
-			<Box sx={{
-				'& .MuiTextField-root': { m: 1, width: '65ch' },
-			}}
-			><TextField
-					id="title"
-					label="Job Title"
-					type="text"
-					fullWidth
-					name="title"
-					value={props.expDetail.title}
-					onChange={(e) => handleChangeInput(props.expDetail.id, e)}
-					autoComplete="current-title"
+		<div className='multi_section_container'>
+			<div>
+				<label htmlFor="">Title</label>
+				<input type="text" className='input_class'
+					value={experience.title}
+					onChange={(e) => setExperience({ ...experience, title: e.target.value })}
 				/>
-			</Box>
-			<Box component="form"
-				sx={{
-					'& .MuiTextField-root': { m: 1, width: '65ch' },
-				}}
-				style={{
-					display: 'flex',
-					flexDirection: "row"
-				}}
-				noValidate
-				autoComplete="off">
-
-
-				<TextField
-					id="company"
-					label="Company"
-					type="text"
-					fullWidth
-					name="company"
-					value={props.expDetail.company}
-					onChange={(e) => handleChangeInput(props.expDetail.id, e)}
-					autoComplete="current-company"
+			</div>
+			<div>
+				<label htmlFor="">Company name</label>
+				<input type="text" className='input_class'
+					value={experience.company}
+					onChange={(e) => setExperience({ ...experience, company: e.target.value })}
 				/>
-			</Box>
-			<Box
-				sx={{
-					'& .MuiTextField-root': { m: 1, width: '65ch' },
-				}}
-			>
+			</div>
+			<div>
+				<label htmlFor="">Description</label>
+				<textarea rows={5} cols={20} className='input_class'
+					value={experience.description}
+					onChange={(e) => setExperience({ ...experience, description: e.target.value })}
+				/>
+			</div>
 
-				<TextField name="description" value={props.expDetail.description} onChange={(e) => handleChangeInput(props.expDetail.id, e)} multiline variant="outlined" placeholder="Description" rows={5} maxRows={20} />
-			</Box>
-
-			<Box
-				sx={{
-					'& .MuiTextField-root': { m: 1, width: '65ch' },
-				}}
-				style={{
-					display: 'flex',
-					alignItems: "center",
-					justifyContent: "space-around",
-					padding: "10px"
-
-				}}
-			>
+			<div className="experience_duration">
 				from
-				<input type="date" value={props.expDetail.startDate} name="startDate" onChange={(e) => handleChangeInput(props.expDetail.id, e)} /> to
-				<input type="date" value={props.expDetail.endDate} name="endDate" onChange={(e) => handleChangeInput(props.expDetail.id, e)} />
 
-			</Box>
+				<DatePicker selected={experience.startDate} onChange={(date) => setExperience({
+					...experience, startDate: date
+				})} />
 
-			<Box style={{
-				display: 'flex',
-				padding: "5px",
-				justifyContent: "flex-end",
-				width: "100%"
-			}}>
-				<DeleteIcon style={{
-					cursor: "pointer",
+				to
+				<DatePicker selected={experience.endDate} onChange={(date) => setExperience({
+					...experience, endDate: date
+				})} />
 
-				}} onClick={() => handleRemoveFields(props.expDetail.id)} />
-			</Box>
+			</div>
 
 
 
-
-		</Box >
+			<DeleteButton experience={item} />
+		</div>
 
 
 

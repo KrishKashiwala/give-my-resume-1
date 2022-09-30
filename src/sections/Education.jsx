@@ -4,17 +4,18 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { Box, TextField } from '@mui/material'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import DataContext from '../utils/myContext';
 import { degreeList } from '../utils/rawData';
 import DeleteButton from '../utils/buttons/DeleteButton';
-
+import { v4 as uuidv4 } from 'uuid';
+import { useSelector } from 'react-redux';
 
 const Education = ({ props, inputField, setInputFields, inputFields }) => {
 	const URL = 'http://universities.hipolabs.com/search?name=&country=india'
 	const [universityNamesList, setUniversityNamesList] = React.useState([])
-
+	const [customDrop, setCustomDrop] = React.useState(false)
 	const baseState = useContext(DataContext)
 	const firstFetch = async () => {
 		await fetch(URL).then(res => res.json()).then(data => {
@@ -22,6 +23,31 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 		})
 
 	}
+
+	//new code
+	const reduxStore = useSelector(state => state.formState)
+	const [university, setUniversity] = useState()
+
+	const [educationDetails, setEducationDetails] = useState([
+		{
+			id: uuidv4(),
+			name: "",
+			cgpa: "",
+			degree: "",
+			branch: ""
+		}
+	])
+
+	const handleEducationInputChange = (e, id) => {
+		const newInputMap = educationDetails.map(item => {
+			// if (item.id === id)
+		})
+		setCustomDrop(!customDrop)
+	}
+
+	const changeRepoSort = (sortType) => {
+		setCustomDrop(false)
+	};
 
 	const handleChangeInput = (id, event) => {
 		const newInputFields = inputFields.map(i => {
@@ -36,16 +62,11 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 		setInputFields(newInputFields);
 	}
 
-	const handleRemoveFields = id => {
-		const values = [...inputFields];
-		values.splice(values.findIndex(value => value.id === id), 1);
-		setInputFields(values);
-	}
+
 
 	React.useEffect(() => {
 		firstFetch()
 	}, [])
-
 
 	return (
 		<Box component="div"
@@ -86,7 +107,7 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 						// @ts-ignore
 						onChange={event => handleChangeInput(inputField.id, event)}
 					/>
-					<FormControl fullWidth style={{ marginTop: "7px", minWidth: "300px" }}>
+					{/* <FormControl fullWidth style={{ marginTop: "7px", minWidth: "300px" }}>
 						<InputLabel id="demo-simple-select-label">University Name</InputLabel>
 						<Select
 							labelId="demo-simple-select-label"
@@ -112,8 +133,24 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 								})
 							}
 						</Select>
-					</FormControl>
+					</FormControl> */}
+					<div className="dropdown">
+						<button className="button_dropdown" onClick={() => setCustomDrop(!customDrop)}>
+							<label>university</label>
+							<svg aria-hidden="true" height="16" role="img" viewBox="0 0 12 16" width="12" ><path fill-rule="evenodd" d="M0 5l6 6 6-6H0z"></path></svg>
+						</button>
+						{
+							customDrop && <ul>
+								{universityNamesList.map((item, type) => (
+									<li name="university" onClick={(e) => {
+										setUniversity(e.target.value)
+										setCustomDrop(!customDrop)
+									}}>{item.name}</li>
+								))}
+							</ul>
+						}
 
+					</div>
 
 				</Box>
 				<Box component="form"
@@ -140,7 +177,6 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 							{
 								degreeList.map(item => {
 									let name;
-									console.log("item : ",)
 									if (item) {
 										// @ts-ignore
 										name = item
@@ -191,13 +227,7 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 
 				</Box>
 			</Box>
-			{/* <DeleteIcon
-				style={{
-					cursor: "pointer",
-					marginTop: "22px",
-					marginLeft: "5px"
-				}}
-				onClick={() => handleRemoveFields(inputField.id)} /> */}
+
 			<DeleteButton inputField={inputField} inputFields={inputFields} setInputFields={setInputFields} />
 
 		</Box >

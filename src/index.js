@@ -3,15 +3,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { DataProvider } from './utils/myContext';
-
+import { Provider } from 'react-redux';
+import { store } from './redux/store'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
     <DataProvider>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </DataProvider>
-  </React.StrictMode>
+  </React.StrictMode >
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,52 +1,50 @@
-// @ts-nocheck
 import { Box } from '@mui/material'
 import React from 'react'
 import ChipInput from 'material-ui-chip-input'
 import { Typography } from '@mui/material'
-import { handleAddChip, handleDeleteChip } from './Skills'
-import DataContext from '../utils/myContext'
+
+import { removeSkillDetails, updateSkillDetails } from '../redux/formSlice'
+import { useDispatch, useSelector } from 'react-redux'
+
+
 const Achievements = (props) => {
-	const baseState = React.useContext(DataContext)
+	const dispatch = useDispatch()
+	// @ts-ignore
+	const reduxStore = useSelector(state => state.formState)
+
+
+
+	const handleSkillInputChange = (type, skill) => {
+		dispatch(updateSkillDetails({ type, skill }))
+	}
+	const handleDeleteSkillChange = (type, skill) => {
+		dispatch(removeSkillDetails({ type, skill }))
+	}
+
 	return (
-		<Box
-			style={{
-				width: "30vw",
-			}}
-		>
-			<Box style={{
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "space-between",
-				padding: "5px"
-			}}>
-				<Typography variant="h5" component="h2" style={{
-					textAlign: "center",
-				}} >
 
-					Achievements
-				</Typography>
-			</Box>
-			<Box style={{ padding: "10px" }}>
-				{/* @ts-ignore */}
-				<ChipInput
-					fullWidth
-					style={{
-						width: "100%",
-					}}
-					value={props.achievements}
-					onAdd={(chip) => {
-						handleAddChip(chip, props.achievements, props.setAchievements)
-						baseState.addSkills(chip, "ach")
-					}}
-					onDelete={(chip, index) => {
+		<div className="achievements_container" >
+			<Typography variant="h5" component="h2" style={{
+				textAlign: "left",
+				marginBottom: "1em"
+			}} >
 
-						handleDeleteChip(chip, index, props.achievements, props.setAchievements)
-						baseState.removeAchievements(index)
-					}
-					}
-				/>
-			</Box>
-		</Box >
+				Achievements
+			</Typography>
+			{/* @ts-ignore */}
+			<ChipInput
+				fullWidth
+				value={reduxStore.skills.achievements}
+				onAdd={(chip) => {
+					handleSkillInputChange("achievements", chip)
+				}}
+				onDelete={(chip, index) => {
+
+					handleDeleteSkillChange("achievements", chip)
+				}
+				}
+
+			/></div >
 	)
 }
 

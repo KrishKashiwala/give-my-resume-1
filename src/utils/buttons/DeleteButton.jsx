@@ -1,13 +1,12 @@
 import React from 'react'
 import styles from '../css/deletebutton.module.css'
 import { RiDeleteBin7Line } from 'react-icons/ri'
+import { handleRemoveFields } from '../../helpers/global'
+import { useDispatch } from 'react-redux'
+import { removeExperienceDetails } from '../../redux/formSlice'
 
-const DeleteButton = ({ inputField, inputFields, setInputFields }) => {
-	const handleRemoveFields = Id => {
-		const values = [...inputFields];
-		values.splice(values.findIndex(value => value.id === Id), 1);
-		setInputFields(values);
-	}
+const DeleteButton = ({ experience }) => {
+	const dispatch = useDispatch()
 	return (
 		<div>
 			<button style={{
@@ -25,7 +24,7 @@ const DeleteButton = ({ inputField, inputFields, setInputFields }) => {
 				alignItems: "center",
 				textAlign: "center"
 
-			}} className={styles.deleteButton} onClick={() => handleRemoveFields(inputField.id)}>
+			}} className={styles.deleteButton} onClick={() => dispatch(removeExperienceDetails({ experience }))}>
 
 				<RiDeleteBin7Line />
 				<span style={{
