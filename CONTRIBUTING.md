@@ -31,7 +31,7 @@ Please note we have a code of conduct, please follow it in all your interactions
       If you don't see an "origin" remote, you can add it using below git command
     
     > git remote add origin <REPO_LINK_FROM_YOUR_ACCOUNT>
- ### 6. Enough BoilerPlates, It's Flutter time now!!
+ ### 6. Enough BoilerPlates, It's coding time now!!
   - Open cloned Project in your favourite IDE. It's time to decide your Playground
 
    In order to contribute to the Application, have a look at some [Issues](https://github.com/clubgamma/give-my-resume/issues).
