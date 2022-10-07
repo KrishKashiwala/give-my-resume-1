@@ -4,6 +4,6 @@
    <i>⚡️A online quick and easy-to-use open-source tool which reduces time of creating resume⚡️</i>
  </h5>
 <br>
-- Please read <a href="https://github.com/KrishKashiwala/give-my-resume/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for commiting to this repo.
+- Please read <a href="https://github.com/clubgamma/give-my-resume/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for commiting to this repo.
 <br>
 - Looking forward to see some meaningful contributions.
