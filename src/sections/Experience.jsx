@@ -1,6 +1,5 @@
 
 import "react-datepicker/dist/react-datepicker.css";
-import DataContext from '../utils/myContext';
 import DeleteButton from '../utils/buttons/DeleteButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewExperience, updateExperienceDetails } from '../redux/formSlice';
@@ -21,14 +20,12 @@ const Experience = ({ item }) => {
 	}
 
 
-	console.log("item: ", item)
-	// continue from here and make the redux store work with other experience fields , education section and think about proects section
-
+	console.log("passed item: ", item)
 	const [experience, setExperience] = useState({
 		id: item.id,
-		company: '',
-		title: "",
-		description: "",
+		company: item.company,
+		title: item.title,
+		description: item.description,
 		startDate: item.startDate,
 		endDate: item.endDate
 	})
@@ -38,7 +35,6 @@ const Experience = ({ item }) => {
 	}, [experience])
 
 	console.log("experience: ", reduxStore.experience)
-	// console.log("local experience: ", experience)
 
 	return (
 

@@ -1,9 +1,8 @@
 // @ts-nocheck
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { Box, TextField } from '@mui/material'
+import { Box, Select, TextField } from '@mui/material'
 import React, { useContext, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import DataContext from '../utils/myContext';
@@ -11,19 +10,42 @@ import { degreeList } from '../utils/rawData';
 import DeleteButton from '../utils/buttons/DeleteButton';
 import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from 'react-redux';
+import AsyncSelect from 'react-select/async'
 
 const Education = ({ props, inputField, setInputFields, inputFields }) => {
 	const URL = 'http://universities.hipolabs.com/search?name=&country=india'
 	const [universityNamesList, setUniversityNamesList] = React.useState([])
 	const [customDrop, setCustomDrop] = React.useState(false)
 	const baseState = useContext(DataContext)
+	let filteredUniversityList = []
 	const firstFetch = async () => {
 		await fetch(URL).then(res => res.json()).then(data => {
-			setUniversityNamesList(data)
+			setUniversityNamesList(data.map(item => item))
+			filteredUniversityList = data.map(item => {
+				filteredUniversityList['value'] = item.name
+				filteredUniversityList['label'] = item.name
+			})
 		})
+
+
+
 
 	}
 
+	const loadOptions = (searchValue, callback) => {
+
+		setTimeout(() => {
+			callback(
+				universityNamesList.filter(university => {
+					return university.name.toLowerCase().includes(searchValue.toLowerCase())
+				})
+			);
+		}, 1000);
+	}
+
+	const handleChange = (selectedOption) => {
+		console.log("selected OPtion: ", selectedOption)
+	}
 	//new code
 	const reduxStore = useSelector(state => state.formState)
 	const [university, setUniversity] = useState()
@@ -67,6 +89,8 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 	React.useEffect(() => {
 		firstFetch()
 	}, [])
+	console.log("university List:", universityNamesList)
+	console.log(filteredUniversityList)
 
 	return (
 		<Box component="div"
@@ -151,6 +175,8 @@ const Education = ({ props, inputField, setInputFields, inputFields }) => {
 						}
 
 					</div>
+
+					<AsyncSelect loadOptions={loadOptions} onChange={handleChange} ></AsyncSelect>
 
 				</Box>
 				<Box component="form"

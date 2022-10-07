@@ -57,13 +57,11 @@ export const formSlice = createSlice({
 		updateDropDownDetails: (State, action) => {
 		},
 		updateExperienceDetails: (state, action) => {
-			console.log("action.payload: ", action.payload)
-			const idx = state.experience.find(item => item.id === action.payload.id)
-			if (idx) {
-				console.log("found idx", idx)
-				let foundMap = state.experience.filter(item => item.id === action.payload.id)
-				console.log("foundMap: ", foundMap)
-			}
+			// find object with id equal to action.payload.id in state.experience
+			const index = state.experience.findIndex((exp) => exp.id === action.payload.id)
+			// update the object with the new values
+			state.experience[index] = action.payload
+
 
 		},
 		updateStep: (state, action) => {
@@ -96,8 +94,12 @@ export const formSlice = createSlice({
 			state.skills[action.payload.type].splice(idx, 1)
 		},
 		removeExperienceDetails: (state, action) => {
-			state.experience.filter(item => item.id !== action.payload.experience.id)
-			console.log(state.experience)
+			console.log(action.payload)
+			const idx = state.experience.findIndex((exp) => exp.id === action.payload.id);
+			console.log("idx: ", idx)
+			if (idx > -1) {
+				state.experience = state.experience.filter((exp) => exp.id !== action.payload.id)
+			}
 		}
 
 
