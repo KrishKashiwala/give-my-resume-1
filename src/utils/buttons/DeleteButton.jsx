@@ -24,7 +24,7 @@ const DeleteButton = ({ experience }) => {
 				alignItems: "center",
 				textAlign: "center"
 
-			}} className={styles.deleteButton} onClick={() => dispatch(removeExperienceDetails({ experience }))}>
+			}} className={styles.deleteButton} onClick={() => dispatch(removeExperienceDetails(experience))}>
 
 				<RiDeleteBin7Line />
 				<span style={{

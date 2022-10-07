@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 
 import { v4 as uuidv4 } from 'uuid';
@@ -21,6 +21,12 @@ const ExperienceTitle = ({ expDetails, setExpDetails }) => {
 
 		}))
 	}
+	useEffect(() => {
+	}, [reduxStore.experience])
+
+
+	//redux experience data doesn't gets updated in ui, yet it returns the updated data
+	//may be subscribe to redux store may work??
 	return (
 		<>
 			<Box style={{
