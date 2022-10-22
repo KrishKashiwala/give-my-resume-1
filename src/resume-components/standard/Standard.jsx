@@ -11,8 +11,9 @@ import { BiPhone } from 'react-icons/bi'
 import { useSelector } from 'react-redux';
 const Standard = () => {
 	const baseState = React.useContext(DataContext);
-	const skills = [...baseState.hardSkills, baseState.softSkills]
 	const reduxStore = useSelector(state => state.formState)
+	// @ts-ignore
+	const skills = [...reduxStore.skills.hardSkills, reduxStore.skills.softSkills]
 	return (
 		<div className="main-container">
 			<div id="displayWrapper" style={{
@@ -121,7 +122,7 @@ const Standard = () => {
 							padding: "1.5em"
 						}}>
 							{
-								baseState.achievements.map(item => {
+								reduxStore.skills.achievements.map(item => {
 									return (
 										<li>{item}</li>
 									)
@@ -151,19 +152,23 @@ const Standard = () => {
 							flexDirection: "column",
 							gap: "2em"
 						}}>
-							<div>
-								<h4 style={{
-									fontSize: "120%",
-								}}>SafeTrade.ai 2022-2023</h4>
-								<span className='opacity'>Full Stack Engineer Intern</span>
-								<span className='opacity'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris </span></div>
+							{
+								reduxStore.experience.map(item => {
+									return (
 
-							<div>
-								<h4 style={{
-									fontSize: "120%",
-								}}>SafeTrade.ai 2022-2023</h4>
-								<span className='opacity'>Full Stack Engineer Intern</span>
-								<span className='opacity'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris </span>	</div>
+										<div>
+											<h4 style={{
+												fontSize: "120%",
+											}}>{item.title} 2022-2023</h4>
+											<span className='opacity'>{item.company}</span>
+											<br />
+											<span className='opacity'>{item.description} </span>
+										</div>
+									)
+								})
+
+							}
+
 						</div>
 					</div>
 					<div className="projects">
