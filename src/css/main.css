@@ -1,9 +1,21 @@
-.main{
-	background: linear-gradient(180deg, #FD6981 27%, #EDF0F5 27%);
-}
 html, body {
     height:100%;
+	background: linear-gradient(180deg, #FD6981 13%, #EDF0F5 87%);
 }
+
+
+::-webkit-scrollbar {
+width: 15px;
+height: 15px;
+}
+::-webkit-scrollbar-track-piece  {
+background-color:  #FD6981;
+}
+::-webkit-scrollbar-thumb:vertical {
+height: 30px;
+background-color: #FD6981;
+}
+
 .standard{
 	width: 1200px;
     min-height: 100px;
